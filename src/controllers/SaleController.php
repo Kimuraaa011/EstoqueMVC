@@ -17,10 +17,12 @@ class SaleController extends Controller {
       ]);
     }
 
-    public function add(){
-      $data = Client::select()->execute();
-      $this->render('/addSale',[
-        'data' => $data
+    public function addProduct($args){
+      $data = Client::select()->where('id', $args['id'])->execute()[0];
+      $products = Product::select()->execute();
+      $this->render('/addSaleProduct',[
+        'data' => $data,
+        'products' => $products
       ]);
     }
 

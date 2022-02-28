@@ -25,3 +25,4 @@ $router->post('/productEdit/{id}', 'ProductController@editAction');
 //Venda
 
 $router->get('/addSale', 'SaleController@add');
+$router->get('/addSale/client/{id}', 'SaleController@addProduct');
