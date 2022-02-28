@@ -4,5 +4,24 @@ use core\Router;
 $router = new Router();
 
 $router->get('/', 'HomeController@index');
-$router->get('/sobre/{nome}', 'HomeController@sobreP');
-$router->get('/sobre', 'HomeController@sobre');
+
+//Clients
+
+$router->get('/addClient', 'ClientController@add');
+$router->post('/addClient', 'ClientController@addAction');
+$router->get('/clients', 'ClientController@show');
+$router->get('/client/{id}', 'ClientController@details');
+$router->get('/clientEdit/{id}', 'ClientController@edit');
+$router->post('/clientEdit/{id}', 'ClientController@editAction');
+
+//Products
+
+$router->get('/products', 'ProductController@show');
+$router->get('/addProduct', 'ProductController@add');
+$router->post('/addProduct', 'ProductController@addAction');
+$router->get('/productEdit/{id}', 'ProductController@edit');
+$router->post('/productEdit/{id}', 'ProductController@editAction');
+
+//Venda
+
+$router->get('/addSale', 'SaleController@add');
