@@ -24,3 +24,7 @@ tr.delete{
 a{
   text-decoration: none;
 }
+
+table.adicionados{
+  display: none;
+}

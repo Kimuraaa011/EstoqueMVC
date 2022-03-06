@@ -5,7 +5,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <link rel="stylesheet" href="<?=$base?>/assets/css/sales_style.css">
+  <link rel="stylesheet" href="<?=$base?>/assets/css/sale_style.css">
   <title>Espaço Maravilha</title>
 
 
@@ -37,7 +37,7 @@
       <?php endforeach; ?>
     </table>
 
-    <script src="<?=$base?>/assets/script/search.js"></script>
+    <script src="<?=$base?>/assets/script/searchClient.js"></script>
   </div>
 
 
