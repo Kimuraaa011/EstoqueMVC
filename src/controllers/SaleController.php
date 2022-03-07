@@ -29,5 +29,31 @@ class SaleController extends Controller {
       ]);
     }
 
-}
+    public function addProductAction($args){
+      $qtdList = [];
+      $idList = explode(',', filter_input(INPUT_POST, 'productIds'));
+      sort($idList);
 
+      $prices = Product::select('price')
+      ->where('id', 'in', $idList)
+      ->execute();
+
+      $total = 0;
+      $count = 0;
+
+      foreach($idList as $id){
+        $qtdList[] = filter_input(INPUT_POST, 'quantidade'.$id);
+        $total += $prices[$count]['price'] * $qtdList[$count];
+        $count++;
+      }
+
+      echo date('Y-m-d H:i:s', time() - 3*60*60);
+      Sale::insert([
+        'clientId' => $args['id'],
+        'data' => date('d-m-Y', time()),
+        'valor_total' => $total,
+        'pagamento' => 'dinheiro'
+      ])->execute();
+    }
+
+}

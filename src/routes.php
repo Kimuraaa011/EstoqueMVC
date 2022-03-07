@@ -26,3 +26,4 @@ $router->post('/productEdit/{id}', 'ProductController@editAction');
 
 $router->get('/addSale', 'SaleController@add');
 $router->get('/addSale/client/{id}', 'SaleController@addProduct');
+$router->post('/addSale/client/{id}', 'SaleController@addProductAction');

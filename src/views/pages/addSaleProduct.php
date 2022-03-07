@@ -31,30 +31,38 @@
       </tr>
     </table>
     <h2>Produtos Selecionados:</h2>
-    <table class="adicionados">
-      <tr>
-        <th>Código</th>
-        <th>Nome</th>
-        <th>Preço</th>
-        <th>Cor</th>
-        <th>Quantidade em Estoque</th>
-        <th>Tamanho</th>
-        <th>Categoria</th>
-        <th>Quantidade</th>
-      </tr>
-      <?php foreach($products as $product): ?>
-        <tr <?= ($product['id']%2 === 0)? 'class="colorir"' : 'class=""'?>>
-          <td class="productId"> <?=$product['id']?> </td>
-          <td> <?=$product['nome']?> </td>
-          <td> R$<?=$product['price']?> </td>
-          <td> <?=$product['cor']?> </td>
-          <td> <?=$product['qtd_estoque']?> </td>
-          <td> <?=$product['tamanho']?> </td>
-          <td> <?=$categoria[$product['categoria'] - 1]['nome']?> </td>
-          <td>  </td>
+
+    <form action="<?=$base?>/addSale/client/<?=$data['id']?>" method="POST">
+      <table class="adicionados">
+        <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Cor</th>
+          <th>Quantidade em Estoque</th>
+          <th>Tamanho</th>
+          <th>Categoria</th>
+          <th>Quantidade</th>
         </tr>
-      <?php endforeach ; ?>
-    </table>
+        <?php foreach($products as $product): ?>
+          <tr <?= ($product['id']%2 === 0)? 'class="colorir"' : 'class=""'?>>
+            <td class="productId"> <?=$product['id']?> </td>
+            <td> <?=$product['nome']?> </td>
+            <td> R$<?=$product['price']?> </td>
+            <td> <?=$product['cor']?> </td>
+            <td> <?=$product['qtd_estoque']?> </td>
+            <td> <?=$product['tamanho']?> </td>
+            <td> <?=$categoria[$product['categoria'] - 1]['nome']?> </td>
+            <td><input type="text" name="<?='quantidade' . $product['id']?>"></td>
+          </tr>
+        <?php endforeach ; ?>
+      </table> <br>
+      <input id="productIds" type="hidden" name="productIds">
+      <input onclick="idList()" type="submit" value="Terminar venda">
+    </form>
+
+
+
     <h2>Selecione o produto desejado:</h2>
     <label >
       <input  placeholder="Pesquise o produto" id="searchInput"type="text" name='search'>
@@ -86,7 +94,7 @@
     </table>
     
   </div>
-  <script src="<?=$base?>/assets/script/searchProduct.js"></script>
+  <script src="<?=$base?>/assets/script/searchProductt.js"></script>
 
 </body>
 
