@@ -34,7 +34,7 @@ class SaleController extends Controller {
       $idList = explode(',', filter_input(INPUT_POST, 'productIds'));
       sort($idList);
 
-      $prices = Product::select('price')
+      $products = Product::select()
       ->where('id', 'in', $idList)
       ->execute();
 
@@ -43,17 +43,30 @@ class SaleController extends Controller {
 
       foreach($idList as $id){
         $qtdList[] = filter_input(INPUT_POST, 'quantidade'.$id);
-        $total += $prices[$count]['price'] * $qtdList[$count];
+        $total += $products[$count]['price'] * $qtdList[$count];
         $count++;
       }
 
-      echo date('Y-m-d H:i:s', time() - 3*60*60);
       Sale::insert([
         'clientId' => $args['id'],
-        'data' => date('d-m-Y', time()),
+        'data' => date('Y-m-d', time() - 3*60*60),
         'valor_total' => $total,
         'pagamento' => 'dinheiro'
       ])->execute();
+
+      $lastInsertedId = Sale::select('id')->last();
+
+      foreach($idList as $id){
+        SaleProduct::insert([
+          'productId' => $id,
+          'salesId' => $lastInsertedId['id']
+        ])->execute();
+      }
+
+
+      
+      
+
     }
 
 }
