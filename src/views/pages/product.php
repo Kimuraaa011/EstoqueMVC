@@ -22,6 +22,7 @@
         <th>Preço</th>
         <th>cor</th>
         <th>tamanho</th>
+        <th>Quantidade em estoque</th>
         <th>Categoria</th>
         <th>Opções</th>
 
@@ -32,6 +33,7 @@
           <td><?= $product['price']?></td>
           <td><?= $product['cor']?></td>
           <td><?= $product['tamanho']?></td>
+          <td><?= $product['qtd_estoque']?></td>
           <td><?= $categoria[$product['categoria'] - 1]['nome']?></td>
           <td><a href="<?=$base?>/productEdit/<?=$product['id']?>">Editar</a></td>
         </tr>

@@ -15,7 +15,7 @@
 <body>
   <div class="container">
     <div class="left_side">
-       <a href="#" class='option'>Histórico de vendas</a>
+       <a href="<?=$base?>/sales" class='option'>Histórico de vendas</a>
        <a href="<?=$base?>/addClient" class='option'>Adicionar cliente</a>
        <a href="<?=$base?>/clients" class='option'>Visualizar clientes</a>
        <a href="<?=$base?>/addSale" class='option'>Adicionar venda</a>

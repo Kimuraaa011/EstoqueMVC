@@ -22,8 +22,9 @@ $router->post('/addProduct', 'ProductController@addAction');
 $router->get('/productEdit/{id}', 'ProductController@edit');
 $router->post('/productEdit/{id}', 'ProductController@editAction');
 
-//Venda
+//Sales
 
 $router->get('/addSale', 'SaleController@add');
 $router->get('/addSale/client/{id}', 'SaleController@addProduct');
-$router->post('/addSale/client/{id}', 'SaleController@addProductAction');
+$router->post('/addSale/client/{id}', 'SaleController@addSaleAction');
+$router->get('/sales', 'SaleController@show');
