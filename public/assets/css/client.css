@@ -16,3 +16,7 @@ th{
 tr.colorir{
   background-color: rgb(171, 181, 190);
 }   
+
+tr.delete{
+  display: none;
+}

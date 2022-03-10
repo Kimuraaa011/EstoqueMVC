@@ -3,6 +3,10 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\models\Client;
+use \src\models\Sale;
+use \src\models\SaleProduct;
+use \src\models\Product;
+use \src\models\Debt;
 
 class ClientController extends Controller {
 
@@ -40,13 +44,20 @@ class ClientController extends Controller {
     }
 
     public function details($args){
-      $data = (Client::select()->where('id', $args['id'])->execute())[0];
-      if(count($data) > 0){
-        $this->render('clientDetails',[
-          'data' => $data
-        ]);
-      }
+      $client = (Client::select()->where('id', $args['id'])->execute())[0];
+      $product = Product::select()->execute();
+      $sale = Sale::select()->execute();
+      $saleProduct = SaleProduct::select()->execute();
+      $debt = Debt::select()->where('clientId', $args['id'])->execute();
+      $this->render('clientDetails',[
+        'client' => $client,
+        'product' => $product,
+        'sale' => $sale,
+        'saleProduct' => $saleProduct,
+        'debt' => $debt
+      ]);
     }
+    
     public function edit($args){
       $data = (Client::select()->where('id', $args['id'])->execute())[0];
       if(count($data) > 0){
