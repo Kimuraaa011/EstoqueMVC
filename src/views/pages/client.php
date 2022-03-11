@@ -5,7 +5,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <link rel="stylesheet" href="<?=$base?>/assets/css/clients.css">
+  <link rel="stylesheet" href="<?=$base?>/assets/css/client.css">
   <title>Espaço Maravilha</title>
 
 
@@ -13,7 +13,10 @@
 
 <body>
   <div class="container">
-    <table>
+
+    <input type="text" id="searchInput" placeholder="Pesquise o nome aqui"> <br> <br>
+
+    <table cellspacing="0">
       <tr>
 
         <th>Nome</th>
@@ -24,7 +27,7 @@
       </tr>
       <?php foreach($data as $client): ?>
         <tr <?= ($client['id']%2 === 0)? 'class="colorir"' : 'class=""' ?> >
-          <td><?= $client['nome']?></td> 
+          <td class="search"><?= $client['nome']?></td> 
           <td><?= $client['celular']?></td>
           <td><?= $client['email']?></td>
           <td><a href="<?=$base?>/client/<?=$client['id']?>">Detalhes</a></td>
@@ -33,6 +36,7 @@
     </table>
   </div>
 
+  <script src="<?=$base?>/assets/script/searchClient.js"></script>
 
 </body>
 

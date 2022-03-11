@@ -18,7 +18,7 @@
 
     <input id="searchInput" type="text" placeholder="procure pelo nome aqui"> <br> <br>
 
-    <table>
+    <table class="selected">
 
       <tr>
 
@@ -36,8 +36,8 @@
 
         <tr>     
 
-          <td class="search"><?=$client[$sale[$item['salesId'] - 1]['clientId'] - 1]['nome']?></td>
-          <td><?=$sale[$item['salesId'] - 1]['data']?></td>
+          <td class="searchName"><?=$client[$sale[$item['salesId'] - 1]['clientId'] - 1]['nome']?></td>
+          <td class="searchDate"><?=$sale[$item['salesId'] - 1]['data']?></td>
           <td><?=$product[$item['productId'] - 1]['nome']?></td>
           <td><?=$sale[$item['salesId'] - 1]['pagamento']?></td>
           <td>R$<?=$product[$item['productId'] - 1]['price']?></td>
@@ -53,7 +53,7 @@
 
   </div>
 
-  <script src="<?=$base?>/assets/script/searchClient.js"></script>
+  <script src="<?=$base?>/assets/script/searchProductDetails.js"></script>
 
 </body>
 

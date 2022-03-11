@@ -1,12 +1,17 @@
-table, tr, td, th{
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
 table{
+  border: 1px solid black;
   margin: 0 auto;
   width: 100%;
+  border-radius: 10px;
   text-align: center;
+  padding: 5px;
+  box-shadow: 2px 1px;
+}
+
+tr, th, td{
+
+  border: 0.005rem solid black;
+
 }
 
 th{

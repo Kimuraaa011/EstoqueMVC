@@ -33,3 +33,9 @@ $router->get('/sales', 'SaleController@show');
 
 $router->get('/debtEdit/{id}', 'DebtController@edit');
 $router->post('/debtEdit/{id}', 'DebtController@editAction');
+
+// Expenses
+
+$router->get('/addExpense', 'ExpenseController@add');
+$router->post('/addExpense', 'ExpenseController@addAction');
+$router->get('/expenses', 'ExpenseController@show');
