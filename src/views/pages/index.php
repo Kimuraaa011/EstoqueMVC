@@ -17,6 +17,7 @@
   <div class="container">
     <div class="left_side">
       <h1>M</h1>
+      <i onclick="closeMenu()" class="fa-solid fa-xmark"></i>
       <h2>Sistema Maravilha</h2> <br>
 
       <?php $all_months = ['Janeira', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'] ?>
@@ -36,6 +37,7 @@
 
 
         </div> <br>
+
 
 
         <div class="selected-box">
@@ -65,9 +67,17 @@
        <a href="<?=$base?>/products" class='option'>Visualizar Produtos</a>
        <a href="<?=$base?>/addExpense" class='option'>Visualizar Gastos</a>
 
+    </div>  
+
+    <div class="menu">
+      <i onclick="openMenu()"  class="fa-solid fa-circle-chevron-down fa-2x"></i>
     </div>
+
+
+
     <div class="right_side">
-      <h2>Dashboard de Vendas</h2>
+
+      <h2 >Dashboard de Vendas</h2>
       <div class="right_side_content">
         <div class="item receita">
           <i class="fa-solid fa-file-invoice-dollar fa-4x"></i>
@@ -101,7 +111,7 @@
     </div>
   </div>
 
-
+  <script src="<?=$base?>/assets/script/modify.js"></script>
 </body>
 
 
