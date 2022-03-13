@@ -19,17 +19,34 @@
       <h1>M</h1>
       <i onclick="closeMenu()" class="fa-solid fa-xmark"></i>
       <h2>Sistema Maravilha</h2> <br>
-
-      <?php $all_months = ['Janeira', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'] ?>
       
-      <form action="" method="post">
+      <form action="<?=$base?>/" method="POST">
+
         <div class="selected-box">
 
           <select name="year" class="format"> 
 
+            
+            <?php if($yearSelected == 0){ ?>
+
+              <option selected value="0">Todos os anos</option>
+
+            <?php }else{ ?>
+
+              <option value="0">Todos os anos</option>
+              <option selected value="<?=$yearSelected?>">Ano <?=$yearSelected?></option>
+
+            <?php } ?>  
+
+
+
             <?php foreach($years as $item): ?>
 
-              <option value="<?=$item['year']?>">Ano <?=$item['year']?></option>
+              <?php if($item['year'] != $yearSelected){ ?>
+
+                <option value="<?=$item['year']?>">Ano <?=$item['year']?></option>
+
+              <?php }?>
               
             <?php endforeach;?>
 
@@ -42,13 +59,24 @@
 
         <div class="selected-box">
 
-          <select name="year"> 
+          <select name="month"> 
+
+          <?php if($monthSelected == 0){ ?>
+
+            <option selected value="0">Todos os meses</option>
+
+          <?php }else{ ?>
 
             <option value="0">Todos os meses</option>
+            <option selected value="<?=$monthSelected?>"><?=$all_months[$monthSelected - 1]?></option>
+
+          <?php } ?>  
 
             <?php foreach($months as $item): ?>
-
-              <option value="<?=$item['month']?>"><?=$all_months[$item['month']-1]?></option>
+              
+              <?php if($monthSelected != $item['month']){ ?>
+                <option value="<?=$item['month']?>"><?=$all_months[$item['month'] - 1]?></option>
+              <?php } ?>  
                 
             <?php endforeach;?>
 

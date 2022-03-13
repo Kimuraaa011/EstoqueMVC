@@ -90,7 +90,8 @@ class SaleController extends Controller {
         SaleProduct::insert([ // adicionando produtos na tabela SaleProduts, foi necessário mais um foreach para adicionar cada produto a seu último id de venda
           'productId' => $id,
           'salesId' => $lastInsertedId['id'],
-          'quantidade' => $qtdList[$count]
+          'quantidade' => $qtdList[$count],
+          'data' => $today
         ])->execute();
         $count++;
       }

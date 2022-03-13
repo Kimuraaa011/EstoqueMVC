@@ -237,6 +237,7 @@ input[type="submit"]{
   background: linear-gradient(to left, #AB46A2, #5E1D59);
   border: 1px solid #5E1D59;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 input[type="submit"]:hover{
