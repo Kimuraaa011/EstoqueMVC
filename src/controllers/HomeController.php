@@ -16,6 +16,8 @@ class HomeController extends Controller {
 
         $productList = SaleProduct::select('p.nome')->innerJoin('products as p', 'saleproducts.productid', '=', 'p.id')->groupBy('p.nome')->addFieldSum('saleproducts.quantidade', 'soma')->orderBy('soma', 'desc')->limit(5)->execute();
 
+        $categorieList = SaleProduct::select('c.nome')->innerJoin('products as p', 'saleproducts.productid', '=', 'p.id')->innerJoin('categories as c', 'p.categoria', '=', 'c.id')->groupBy('c.nome')->addFieldSum('saleproducts.quantidade', 'soma')->orderBy('soma', 'desc')->limit(5)->execute();
+
 
         $all_months = ['Janeira', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
@@ -34,7 +36,9 @@ class HomeController extends Controller {
         $expenses = Expense::select()->addFieldSum('valor', $alias = 'name')->execute()[0]['name'];
 
         $profit = $sales - $expenses;
-        
+
+
+
         $this->render('index',[
             'total' => $total,
             'years' => $years,
@@ -43,7 +47,8 @@ class HomeController extends Controller {
             'profit' => $profit,
             'salesCount' => $salesCount,
             'all_months' => $all_months,
-            'productList' => $productList
+            'productList' => $productList,
+            'categorieList' => $categorieList
         ]);
 
     }
@@ -74,7 +79,9 @@ class HomeController extends Controller {
 
 
 
-        $productList = SaleProduct::select('p.nome')->innerJoin('products as p', 'saleproducts.productid', '=', 'p.id')->groupBy('p.nome')->addFieldSum('saleproducts.quantidade', 'soma')->orderBy('soma', 'desc')->limit(5)->execute();
+        $productList = SaleProduct::select('p.nome')->innerJoin('products as p', 'saleproducts.productid', '=', 'p.id')->groupBy('p.nome')->where('data', 'like', $yearSelected . '-%' . $monthSelected . '-%')->addFieldSum('saleproducts.quantidade', 'soma')->orderBy('soma', 'desc')->limit(5)->execute();
+
+        $categorieList = SaleProduct::select('c.nome')->innerJoin('products as p', 'saleproducts.productid', '=', 'p.id')->innerJoin('categories as c', 'p.categoria', '=', 'c.id')->groupBy('c.nome')->where('data', 'like', $yearSelected . '-%' . $monthSelected . '-%')->addFieldSum('saleproducts.quantidade', 'soma')->orderBy('soma', 'desc')->limit(5)->execute();
 
 
 
@@ -100,7 +107,8 @@ class HomeController extends Controller {
             'yearSelected' => $aux1,
             'monthSelected' => $aux2,
             'all_months' => $all_months,
-            'productList' => $productList
+            'productList' => $productList,
+            'categorieList' => $categorieList
         ]);
 
 

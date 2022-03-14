@@ -91,7 +91,7 @@
        <a href="<?=$base?>/addClient" class='option'>Adicionar cliente</a>
        <a href="<?=$base?>/clients" class='option'>Visualizar clientes</a>
        <a href="<?=$base?>/addSale" class='option'>Adicionar venda</a>
-       <a href="<?=$base?>/addProduct" class='option'>Adicionar Produto</a>
+       <!-- <a href="<?=$base?>/addProduct" class='option'>Adicionar Produto</a> -->
        <a href="<?=$base?>/products" class='option'>Visualizar Produtos</a>
        <a href="<?=$base?>/addExpense" class='option'>Visualizar Gastos</a>
 
@@ -139,7 +139,11 @@
         <div class="chart1">
           <h2>Produtos mais Vendidos</h2>
           <canvas id="pieChart">hello</canvas>
-        </div>        
+        </div>  
+        <div class="chart2">
+          <h2>Mais vendidos por categoria</h2>
+          <canvas id="barChart"></canvas>
+        </div>      
       </div>         
     </div>
   </div>
@@ -177,14 +181,66 @@
           data: data,
           label: 'Top 5 produtos',
           backgroundColor: [
-            '#FB3640',
-            '#EFCABB',
-            '#43AABB'
+            '#5E1D59',
+            '#1E90FF',
+            '#3f4961',            
+            '#43AABB',
+            '#EFCABB'            
           ]
         }],
         labels: labels
       },
+      options: {
+        
+      },
       plugins: [ChartDataLabels]
+    });
+
+    // Configuração do gráfico de barras
+    
+    let ctx2 = document.getElementById('barChart').getContext('2d');
+    let barLabels = [
+
+      <?php 
+        foreach($categorieList as $item){
+          echo "'" . $item['nome'] . "',";
+        }
+      ?>
+
+    ]
+    let barData = [
+
+      <?php 
+        foreach($categorieList as $item){
+          echo "'" . $item['soma'] . "',";
+        }
+      ?>
+
+    ]
+
+    let barChart = new Chart(ctx2, {
+      type: 'bar',
+      options: {
+          indexAxis: 'y',
+      },
+      data: {
+        datasets: [{
+          label: '',
+          barThickness: 60,
+          maxBarThickness: 20,
+          minBarLength: 1,
+          data: barData,
+          backgroundColor: [
+            '#5E1D59',
+            '#1E90FF',
+            '#3f4961',            
+            '#43AABB',
+            '#EFCABB'            
+          ]
+          
+        }],  
+        labels: barLabels
+      }
     });
 
   </script>
