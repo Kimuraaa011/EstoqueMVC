@@ -4,6 +4,7 @@ namespace src\controllers;
 use ClanCats\Hydrahon\Query\Sql\Func;
 use \core\Controller;
 use \src\models\Expense;
+use src\models\Product;
 use \src\models\Sale;
 use src\models\SaleProduct;
 
@@ -12,6 +13,9 @@ class HomeController extends Controller {
     
 
     public function index() {
+
+        $productList = SaleProduct::select('p.nome')->innerJoin('products as p', 'saleproducts.productid', '=', 'p.id')->groupBy('p.nome')->addFieldSum('saleproducts.quantidade', 'soma')->orderBy('soma', 'desc')->limit(5)->execute();
+
 
         $all_months = ['Janeira', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
@@ -38,7 +42,8 @@ class HomeController extends Controller {
             'productSale' => $productSale,
             'profit' => $profit,
             'salesCount' => $salesCount,
-            'all_months' => $all_months
+            'all_months' => $all_months,
+            'productList' => $productList
         ]);
 
     }
@@ -69,6 +74,8 @@ class HomeController extends Controller {
 
 
 
+        $productList = SaleProduct::select('p.nome')->innerJoin('products as p', 'saleproducts.productid', '=', 'p.id')->groupBy('p.nome')->addFieldSum('saleproducts.quantidade', 'soma')->orderBy('soma', 'desc')->limit(5)->execute();
+
 
 
         $productSale = SaleProduct::select()->where('data', 'like', $yearSelected . '-%' . $monthSelected . '-%')->addFieldCount('productId', 'quantidade')->execute()[0];
@@ -83,9 +90,6 @@ class HomeController extends Controller {
 
         $profit = $sales - $expenses;
 
-
-
-
         $this->render('index',[
             'total' => $total,
             'years' => $years,
@@ -95,7 +99,8 @@ class HomeController extends Controller {
             'salesCount' => $salesCount,
             'yearSelected' => $aux1,
             'monthSelected' => $aux2,
-            'all_months' => $all_months
+            'all_months' => $all_months,
+            'productList' => $productList
         ]);
 
 

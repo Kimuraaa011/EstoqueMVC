@@ -115,31 +115,79 @@
 
           </div>
         </div>
-        <div class="item">
+        <div class="item produtos">
           <i class="fa-solid fa-basket-shopping fa-4x"></i>
           <div class="content_container">
             <h3>Produtos Vendidos</h3>
             <span class="text"><?=$productSale['quantidade']?></span>
           </div>
         </div>
-        <div class="item">
+        <div class="item lucro">
           <i class="fa-solid fa-hand-holding-dollar fa-4x"></i>
           <div class="content_container">
             <h3>Lucro</h3>
             <span class="text">R$ <?=number_format($profit, 2, ',', '.')?></span>
           </div>
         </div>
-        <div class="item">
+        <div class="item vendas">
           <i class="fa-solid fa-store fa-4x"></i>
           <div class="content_container">
             <h3>Total de Vendas</h3>
             <span class="text"><?=$salesCount['quantidade']?></span>
           </div>
         </div>
+        <div class="chart1">
+          <h2>Produtos mais Vendidos</h2>
+          <canvas id="pieChart">hello</canvas>
+        </div>        
+      </div>         
     </div>
   </div>
 
   <script src="<?=$base?>/assets/script/modify.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js"></script>
+  <script>
+    let ctx = document.getElementById('pieChart').getContext('2d');
+    let labels = [
+      <?php 
+      
+        foreach($productList as $item){
+          echo "'" . $item['nome'] .  "',";
+        }
+
+      ?>
+    ];
+    let data = [
+
+      <?php 
+      
+        foreach($productList as $item){
+          echo "'" . $item['soma'] . "',";
+        }
+
+      ?>
+
+    ];    
+
+    let myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: data,
+          label: 'Top 5 produtos',
+          backgroundColor: [
+            '#FB3640',
+            '#EFCABB',
+            '#43AABB'
+          ]
+        }],
+        labels: labels
+      },
+      plugins: [ChartDataLabels]
+    });
+
+  </script>
 </body>
 
 
