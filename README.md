@@ -1,4 +1,17 @@
-# Sistema Maravilha(nome da loja) de estoque feito usando o conceito MVC 
+# Sistema Maravilha de estoque
+
+O sistema maravilha é uma aplicação web feita com o propósito de funcionar como um sistema de estoque que possui um dashboard para filtrar alguns dados importantes por data. O sistema foi feito usando PHP, Javascript, Chart.js, e também usando o builder de banco de dados Hydrahon e usando o design pattern MVC. Todas as funcionalidades estão listadas abaixo:
+
+* Adicionar Cliente
+* Visualizar Clientes, e todo os detalhes como compras, dados e entre outros
+* Adicionar venda
+* Visualizar vendas
+* Adicionar produtos
+* Filtragem de dados por data e plotagem de gráficos
+
+Todas as operações acima possuem funcionalidades de CRUD, facilmente, acessadas pelo cliente!
+
+
 
 ## Página principal da aplicação
 
